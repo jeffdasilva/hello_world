@@ -25,6 +25,12 @@ format: ruff-format
 .PHONY: install
 install: install-uv uv-install-tools
 
+
+.PHONY: clean
+clean:
+	@find . -name __pycache__ -type d -exec rm -rvf {} +
+
+
 # https://github.com/astral-sh/uv
 .PHONY: install-uv
 install-uv:
@@ -48,9 +54,11 @@ uv-run: $(PYTHON_ENTRY_FILE)
 
 .PHONY: uv-install-tools
 uv-install-tools:
-	uv tool install ruff 
+	uv tool install ruff
 	uv tool install mypy
 	uv tool install pytest
+
+# uvx == uv tool run
 
 .PHONY: ruff-check
 ruff-check:
@@ -70,3 +78,19 @@ mypy: mypy-check
 .PHONY: pytest
 pytest:
 	uvx pytest
+
+
+formatter.files ?= Makefile
+
+.PHONY: formatter.remove-trailing-whitespace
+formatter.remove-trailing-whitespace: $(patsubst %,%.formatter.remove-trailing-whitespace,$(formatter.files))
+
+.PHONY: $(patsubst %,%.formatter.remove-trailing-whitespace,$(formatter.files))
+$(patsubst %,%.formatter.remove-trailing-whitespace,$(formatter.files)): %.formatter.remove-trailing-whitespace: %
+	@if grep -q '[[:space:]]$$' $<; then \
+		echo "Removing trailing whitespace from $<..."; \
+	fi
+	@sed -i 's/[[:space:]]*$$//' $<
+
+.PHONY: format
+format: formatter.remove-trailing-whitespace
