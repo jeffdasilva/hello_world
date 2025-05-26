@@ -38,6 +38,10 @@ uv-init:
 uv-lock:
 	uv lock
 
+.PHONY: uv-venv
+uv-venv:
+	uv venv
+
 .PHONY: uv-run
 uv-run: $(PYTHON_ENTRY_FILE)
 	uv run python3 $<
