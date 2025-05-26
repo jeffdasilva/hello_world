@@ -1,2 +1,4 @@
 
-# hello_world template project to demonstrate (gnu make) + (uv) + (github actions) all working together
+# hello_world python template project
+
+Demonstrating gnu make with uv with github actions all working together
