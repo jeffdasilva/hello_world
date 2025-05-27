@@ -1,4 +1,3 @@
 {
     "python.analysis.typeCheckingMode": "strict",
-    "python.terminal.activateEnvironment": false
 }

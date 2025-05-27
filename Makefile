@@ -77,10 +77,10 @@ mypy: mypy-check
 
 .PHONY: pytest
 pytest:
-	uvx pytest
+	uvx pytest -v -s
 
 
-formatter.files ?= Makefile
+formatter.files = Makefile
 
 .PHONY: formatter.remove-trailing-whitespace
 formatter.remove-trailing-whitespace: $(patsubst %,%.formatter.remove-trailing-whitespace,$(formatter.files))
@@ -94,3 +94,14 @@ $(patsubst %,%.formatter.remove-trailing-whitespace,$(formatter.files)): %.forma
 
 .PHONY: format
 format: formatter.remove-trailing-whitespace
+
+####################################################################
+# Locally run github actions with act (Optional)
+.PHONY: install-act
+install-act:
+	curl https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash
+
+.PHONY: act
+act:
+	./bin/act
+####################################################################
