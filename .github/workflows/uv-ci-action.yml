@@ -1,0 +1,30 @@
+# https://docs.astral.sh/uv/guides/integration/github/
+
+name: UV Continuous Integration GitHub Action
+
+jobs:
+  uv-tester:
+    name: python
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository code
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          # Best practice is to pin the version of uv you want to use as opposed to using the "latest" version.
+          # use uv --version to find the current version of uv used in this workflow.
+          version: ${{ inputs.uv_version || '0.7.8' }}
+
+      - name: "Set up Python"
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: "pyproject.toml"
+            
+      - name: Install the project
+        run: uv sync --locked --all-extras --dev
+
+      - name: Run the tests
+        run: make test -j -l4
