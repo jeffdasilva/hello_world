@@ -99,6 +99,10 @@ format: formatter.remove-trailing-whitespace
 # Locally run github actions with act (Optional)
 .PHONY: install-act
 install-act:
+	@echo "act requires Docker to be installed and running. So let's check if Docker is installed and working..."
+	docker version
+	docker info
+	docker run hello-world
 	curl https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash
 
 .PHONY: act
