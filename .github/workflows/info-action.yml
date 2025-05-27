@@ -1,6 +1,6 @@
 # taken from https://docs.github.com/en/actions/writing-workflows/quickstart
 name: Informational GitHub Action
-run-name: ${{ github.actor }} is running this GitHub Action
+run-name: ${{ github.actor }} is running Simple Informational GitHub Action
 on: [push]
 jobs:
   Explore-GitHub-Actions:

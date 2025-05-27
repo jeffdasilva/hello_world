@@ -11,7 +11,7 @@ def test_get_greeting_message_returns_string() -> None:
 
 def test_get_greeting_message_content() -> None:
     result = get_greeting_message()
-    assert result == "Hello, World!", "Greeting message should match expected output"
+    assert result == "Hello Cruel World!", "Greeting message should match expected output"
 
 
 if __name__ == "__main__":

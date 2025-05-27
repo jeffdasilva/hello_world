@@ -2,11 +2,11 @@
 
 
 def get_greeting_message() -> str:
-    return "Hello, World!"
+    return "Hello Cruel World!"
 
 
 def main() -> None:
-    print("Hello from hello-world!")
+    print(get_greeting_message())
 
 
 if __name__ == "__main__":

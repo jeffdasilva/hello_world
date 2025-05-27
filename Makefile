@@ -77,10 +77,10 @@ mypy: mypy-check
 
 .PHONY: pytest
 pytest:
-	uvx pytest
+	uvx pytest -v -s
 
 
-formatter.files ?= Makefile
+formatter.files = Makefile
 
 .PHONY: formatter.remove-trailing-whitespace
 formatter.remove-trailing-whitespace: $(patsubst %,%.formatter.remove-trailing-whitespace,$(formatter.files))
