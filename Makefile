@@ -103,6 +103,7 @@ install-act:
 	docker version
 	docker info
 	docker run hello-world
+	@echo "Installing act..."
 	curl https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash
 
 .PHONY: act
